@@ -1,18 +1,48 @@
-import { Button } from '@material-ui/core';
-import React, { Component } from 'react'
-import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone'
-export class Navigate extends Component {
+import React from 'react'
+import { Button, Menu, MenuItem, Fade } from '@material-ui/core';
+import AccountCircleTwoTone from '@material-ui/icons/AccountCircleTwoTone';
+import IconButton from '@material-ui/core/IconButton';
+
+export default function Navigate() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+  
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
    
-    render() {
-        return (
-            <div style ={{paddingLeft:'4px '}} >
-            <Button style={{borderRadius:'100%', width:'10px', height:'50px', float:'right'}}  size="small" variant="contained" contained target="_blank" href="http://192.168.43.43/">
-              <AccountCircleTwoToneIcon />
-            </Button>
-             
-            </div>
-        )
-    }
+
+    return (
+        <div>
+      
+          <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
+          <IconButton   edge="end" color="secondary" > <AccountCircleTwoTone /> </IconButton>  Vendor  </Button>
+  <Menu
+    id="fade-menu"
+    anchorEl={anchorEl}
+    keepMounted
+    open={open}
+    onClose={handleClose}
+    TransitionComponent={Fade}
+  
+  >
+    
+
+    <MenuItem onClick={handleClose}  >
+        <Button href="http://192.168.43.43/" target="_blank" >Create an Account</Button>
+        </MenuItem>
+
+    <MenuItem onClick={handleClose}>
+        <Button href="http://192.168.43.43/" target="_blank" >Already have an Account</Button>
+        </MenuItem>
+
+  </Menu>
+         
+        </div>
+    )
 }
 
-export default Navigate

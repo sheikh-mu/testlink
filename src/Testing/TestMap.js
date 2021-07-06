@@ -1,20 +1,21 @@
 import React from 'react'
-import { Button } from '@material-ui/core';
 import { GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 import axios from 'axios';
+import { withStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
+import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
+import CloseIcon from '@material-ui/icons/Close';
+import { Typography, Tooltip, Dialog, DialogContent, Chip, Button, IconButton  } from '@material-ui/core';
+import MuiDialogTitle  from '@material-ui/core/DialogTitle';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Fab from '@material-ui/core/Fab';
 import '../material.css'
 import '../App.css'
-import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
-import { Typography, Tooltip, Dialog, DialogContent, } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import { withStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-
 
 const mapStyles = {        
-    height: "60vh",
+    height: "50vh",
     width: "100%"};
 
     const styles = (theme) => ({
@@ -44,6 +45,10 @@ const mapStyles = {
       </MuiDialogTitle>
     );
     });
+    
+    function Alert(props) {
+      return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
 
     export const MapContainer = () => {
     const [ currentPosition, setCurrentPosition ] = useState({
@@ -102,18 +107,25 @@ const mapStyles = {
           console.log(currentPosition)
             console.log('hello')
 
-
+            setAlert(true);
     }
 
     
     const [open, setOpen] = React.useState(true);
+
+    const [alert, setAlert] = React.useState(false) 
   
-    // const handleClickOpen = () => {
-    //   setOpen(true);
-    // };
     const handleClose = () => {
       setOpen(false);
     };
+
+    const handleOff = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setAlert(false);
+    }
     return (
     
       <Dialog fullScreen open={open} onClose={handleClose} aria-labelledby="customized-dialog-title">
@@ -124,11 +136,15 @@ const mapStyles = {
       <DialogContent>
          <div style={{ paddingTop: '5px',paddingBottom:'5px' }} align= "center">
                   <Tooltip title=" Use Current Location" arrow  >
-                    <Button onClick={onUpdate} variant="contained" color="secondary"style={{ borderRadius: 50,  height: 80, width: 80, padding:5  }} > <LocationOnRoundedIcon color="inherit" fontSize="large"/>  </Button>
+                    {/* <Button onClick={onUpdate} variant="contained" color="secondary"style={{ borderRadius: 50,  height: 80, width: 80, padding:5  }} > <LocationOnRoundedIcon color="inherit" fontSize="large"/>  </Button> */}
+                    <Fab  variant = "round"color="secondary" aria-label="add" size="large" onClick={onUpdate}>
+                    <LocationOnRoundedIcon />
+                     </Fab>
                   </Tooltip> 
           
                </div>
-               <Typography variant="h5">Drag Marker to set position</Typography>
+           
+               <Chip color="primary" label='Drag Marker to set position' /> 
                <LoadScript
                       googleMapsApiKey='AIzaSyARJeIBTthW0nJPJh-lUW0DnD329a8es9c'>
                         <GoogleMap
@@ -149,7 +165,19 @@ const mapStyles = {
                       
                         </LoadScript>
                         <br />
-                        <div align= "center"><Button onClick={onSubmit} color="primary" variant="contained" style={{ borderRadius: 50 }}>Confirm</Button></div>
+                        <div align= "center">
+
+                        <Fab  variant = "extended"color="primary" aria-label="add" size="large" onClick={onSubmit}>Confirm </Fab>
+
+                        <Snackbar open={alert} autoHideDuration={6000} onClose={handleOff}>
+
+                          <Alert onClose={handleOff} severity="success">
+                                   Submitted Successfully!
+                          </Alert>
+                        </Snackbar>
+
+                          {/* <Button onClick={onSubmit} color="primary" variant="contained" style={{ borderRadius: 50 }}>Confirm</Button> */}
+                          </div>
       </DialogContent>
   
   

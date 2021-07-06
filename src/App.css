@@ -4,12 +4,12 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 7vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-font-size: 34px;
+font-size: 40px;
   font-family: 'Times New Roman', Times, serif;
   /* font-size: calc(10px + 2vmin); */
   color: white;

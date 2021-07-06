@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid';
-import '../material.css'
-import { Button, TextField, Typography, Paper,  } from '@material-ui/core';
+import { Button, TextField, Typography, Paper, Fab,  } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-// import FormControl from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import NativeSelect from '@material-ui/core/NativeSelect';
+// import NativeSelect from '@material-ui/core/NativeSelect';
 import TestCard from '../Testing/TestCard';
-// import ImageSlider from './ImageSlider';
-// import Achievements from "./Achievements"
-// import MapPop from './MapPop'
+import '../material.css'
+
 class ProductList extends Component {
   
   constructor(props) {
@@ -132,15 +129,17 @@ class ProductList extends Component {
         }
       ],
     }
-  
-    this._onButtonClick = this._onButtonClick.bind(this);
   }
+    // this._onButtonClick = this._onButtonClick.bind(this);
+  
 
  
   handleSubmit = event => {
   event.preventDefault();
   const {name} = this.state;
-    axios.get('http://wearteachers.xyz/valt_temp/denied/api/search',  {name} )
+ 
+
+    axios.post('https://wearteachers.xyz/valt_temp/denied/api/search', {name} )
 
       .then(response => {
         console.log(response);
@@ -159,14 +158,14 @@ class ProductList extends Component {
     })
   }
 
-_onButtonClick() {
-  this.setState({
-    showComponent: true,
-  });
-}
+// _onButtonClick() {
+//   this.setState({
+//     showComponent: true,
+//   });
+// }
 
   render() {
-    const { posts } = this.state;
+    const { posts,name } = this.state;
    
     return (
 
@@ -176,7 +175,6 @@ _onButtonClick() {
             <Grid  container direction="row" justify="center" xs={12}>
              <Paper elevation={6} style={{width:'90%',borderRadius:"50px"}} >
              {/* <TextField 
-                  
                   className="inputRounded"
                    
                     placeholder="Search Medicine/Chemical Compound"
@@ -185,7 +183,8 @@ _onButtonClick() {
                     required
                   value={this.handleName}
                      onClick={this.handleName} 
-                    /> */}
+                    /> */}        
+          
 
               <Autocomplete 
                 freeSolo
@@ -197,6 +196,7 @@ _onButtonClick() {
                   
                   className="inputRounded"
                     {...params}
+                    id="filled-secondary"
                     placeholder="Medicine Name/Chemical Name"
                     variant="outlined"
                     color="secondary"
@@ -218,17 +218,25 @@ _onButtonClick() {
             </Grid>
             <br />
             <Grid  container direction="row" justify="center" xs={12}>
-            <Button type="submit" variant="contained" color="secondary" size="small" 
-              style={{
-                fontFamily: 'Roboto',
-                fontSize: '16px',
-                fontWeight: 'Bold',
-                borderRadius: '20px',
              
-              }}>
-              Search </Button>
+            <Fab type="submit" variant = "extended" color="secondary" aria-label="add" size="large" onClick={this.handleName}
+             style={{
+              fontFamily: 'Roboto',
+              fontSize: '16px',
+              fontWeight: 'Bold',
+              borderRadius: '40px',
+            }}
+            > Search</Fab>
+            
+             
+            
        
               </Grid>
+
+              <br />
+
+      <div style={{paddingLeft:'10px'}}><Typography variant='h6' style={{ fontWeight:'bold'}}>Result showing:</Typography></div>
+
         </form>
 {/* 
 <div style={{padding:"20px 0px 0px 0px "}} align="right">   
@@ -252,6 +260,8 @@ _onButtonClick() {
 
     
       </div> */}
+     
+      
 <hr />
         <div style={{ paddingTop: '20px' }} />
         

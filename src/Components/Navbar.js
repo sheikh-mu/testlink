@@ -28,18 +28,9 @@ backdrop: {
 },
 }));
 
-
-
 export default function Navbar() {
     const classes = useStyles();
     const image='https://images.unsplash.com/photo-1584017911766-d451b3d0e843?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDN8fG1lZGljaW5lfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-    const [open, setOpen] = React.useState(false);
-    const handleClose = () => {
-      setOpen(false);
-    };
-    const handleToggle = () => {
-      setOpen(!open);
-    };
 
     return (
       <Grid container direction="column"  >  
@@ -52,15 +43,8 @@ export default function Navbar() {
             <Typography className={classes.typograhyStyles} >
                Smart Pharmacy
             </Typography>
-            <div>
-            <IconButton   edge="end" color="secondary" target="_blank" href="http://192.168.43.43/">
-              <AccountCircleTwoTone />
-            </IconButton>
-            </div>
-          {/* <Button variant="outlined"  onClick={handleToggle} >Map</Button>
-          <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-  
-      </Backdrop> */}
+        
+             <Navigate />
         </Toolbar>
        
       
