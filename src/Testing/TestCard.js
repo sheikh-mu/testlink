@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) =>({
 
   },
   media: {
-    height: 300,
-    width:'100%',
+    height: 100,
+    width:'40%',
   },
   avatar: {
     backgroundColor: '#440A67',

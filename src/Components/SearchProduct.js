@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 // import NativeSelect from '@material-ui/core/NativeSelect';
 import TestCard from '../Testing/TestCard';
 import '../material.css'
+import Navbar from './Navbar';
 
 class ProductList extends Component {
   
@@ -139,7 +140,7 @@ class ProductList extends Component {
   const {name} = this.state;
  
 
-    axios.post('https://wearteachers.xyz/valt_temp/denied/api/search', {name} )
+    axios.get('http://192.168.0.107/api/search', {name} )
 
       .then(response => {
         console.log(response);
@@ -165,11 +166,12 @@ class ProductList extends Component {
 // }
 
   render() {
-    const { posts,name } = this.state;
+    const { posts,name,data } = this.state;
    
     return (
 
       <div >
+      
         <form onSubmit={this.handleSubmit}>
           <div style={{ paddingTop: '20px' }} />
             <Grid  container direction="row" justify="center" xs={12}>
@@ -197,7 +199,7 @@ class ProductList extends Component {
                   className="inputRounded"
                     {...params}
                     id="filled-secondary"
-                    placeholder="Medicine Name/Chemical Name"
+                    placeholder="Search for Medicine "
                     variant="outlined"
                     color="secondary"
                     required
@@ -217,20 +219,17 @@ class ProductList extends Component {
 </Paper>
             </Grid>
             <br />
-            <Grid  container direction="row" justify="center" xs={12}>
-             
-            <Fab type="submit" variant = "extended" color="secondary" aria-label="add" size="large" onClick={this.handleName}
-             style={{
-              fontFamily: 'Roboto',
-              fontSize: '16px',
-              fontWeight: 'Bold',
-              borderRadius: '40px',
-            }}
-            > Search</Fab>
+              <Grid  container direction="row" justify="center" xs={12}>
+
+                  <Fab type="submit" variant = "extended" color="secondary" aria-label="add" size="large" onClick={this.handleName}
+                  style={{
+                    fontFamily: 'Roboto',
+                    fontSize: '16px',
+                    fontWeight: 'Bold',
+                    borderRadius: '40px',
+                  }}
+                  > Search</Fab>
             
-             
-            
-       
               </Grid>
 
               <br />
@@ -270,26 +269,26 @@ class ProductList extends Component {
               <Grid item xs = {1} />
 
                <Grid item xs={10}> 
-              <Grid container spacing={2}>
+              <Grid container spacing={5}>
             
-                  {posts.map(post =>
-                  <Grid item xs={12} sm={12}>
+                {data.map(post =>
+                  <Grid item xs={12} sm={4}>
                     <TestCard
                       key={post.id}
                       product={post.product_name}
-                      Price={post.sell_price}
+                      Price={post.regular_price}
                       desc={post.product_description}
-                      // vendor={post.vandor}
+                       vendor={post.vandor}
                       chemical={post.chemical_name}
                     cat={post.category}
-                      //   loc={post.location}
-                    //   img={post.imgURL}
-                    //   initial={post.initial_name}
-                    //   symp_1={post.sym1}
-                    //   symp_2={post.sym2}
-                    //   symp_3={post.sym3}
-                    // disc={post.discount}
-                // vendor = {post.users.name} 
+                        loc={post.location}
+                      // img={post.imgURL}
+                      initial={post.initial_name}
+                      symp_1={post.sym1}
+                      symp_2={post.sym2}
+                      symp_3={post.sym3}
+                    disc={post.discount}
+                //  vendor = {post.users.name} 
                 // loc = {post.users.location.title}
 
                         />
@@ -304,8 +303,8 @@ class ProductList extends Component {
       
       </Grid>
       
- 
-       
+
+   
       </div>
 
     );

@@ -13,6 +13,12 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Fab from '@material-ui/core/Fab';
 import '../material.css'
 import '../App.css'
+import SearchProduct from '../Components/SearchProduct'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const mapStyles = {        
     height: "50vh",
@@ -92,12 +98,12 @@ const mapStyles = {
       }
  
  const onSubmit = () => {
-        axios.post('http://192.168.43.43/api/search', { currentPosition})
+        axios.post('http://192.168.0.110/api/vandorregister',  {currentPosition} )
         .then(response => {
             console.log(response);
             console.log(response.data)
-            
-          //  setPost({ post: response.data })
+            console.log(currentPosition)
+          // setPost({ post: response.data })
           })
           .catch(error => {
      
@@ -108,6 +114,11 @@ const mapStyles = {
             console.log('hello')
 
             setAlert(true);
+            <Switch>
+            <Route path="/home" >
+            <SearchProduct />
+            </Route>
+          </Switch>
     }
 
     
@@ -117,6 +128,7 @@ const mapStyles = {
   
     const handleClose = () => {
       setOpen(false);
+     
     };
 
     const handleOff = (event, reason) => {
@@ -172,7 +184,7 @@ const mapStyles = {
                         <Snackbar open={alert} autoHideDuration={6000} onClose={handleOff}>
 
                           <Alert onClose={handleOff} severity="success">
-                                   Submitted Successfully!
+                                  Location Confirmed!
                           </Alert>
                         </Snackbar>
 

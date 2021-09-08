@@ -20,7 +20,7 @@ export default function Navigate() {
         <div>
       
           <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
-          <IconButton   edge="end" color="secondary" > <AccountCircleTwoTone /> </IconButton>  Vendor  </Button>
+          <IconButton   edge="end" color="secondary" > <AccountCircleTwoTone /> </IconButton>   Vendor Sign Up/Sign In </Button>
   <Menu
     id="fade-menu"
     anchorEl={anchorEl}
@@ -33,11 +33,11 @@ export default function Navigate() {
     
 
     <MenuItem onClick={handleClose}  >
-        <Button href="http://192.168.43.43/" target="_blank" >Create an Account</Button>
+        <Button href="http://localhost:3000/" target="_blank" >Create an Account</Button>
         </MenuItem>
 
     <MenuItem onClick={handleClose}>
-        <Button href="http://192.168.43.43/" target="_blank" >Already have an Account</Button>
+        <Button href="http://192.168.0.110/login" target="_blank" >Already have an Account</Button>
         </MenuItem>
 
   </Menu>

@@ -18,7 +18,7 @@ export default function Achievements() {
         <div>
          
          
-       <Accordion>
+       <Accordion defaultExpanded={true} square={true}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
