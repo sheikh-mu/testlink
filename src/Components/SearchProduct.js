@@ -17,6 +17,7 @@ class ProductList extends Component {
 
     this.state = {
       posts: [],
+      testState:"",
       data: [
      
         {
@@ -135,7 +136,7 @@ class ProductList extends Component {
   
 
  
-  handleSubmit = event => {
+  handleSubmit = (event) => {
   event.preventDefault();
   const {name} = this.state;
  
@@ -146,6 +147,7 @@ class ProductList extends Component {
         console.log(response);
         console.log(response.data)
         this.setState({ posts: response.data })
+        this.setState({testState:response.data.product_description})
       })
       .catch(error => {
         console.log(error)
@@ -172,7 +174,7 @@ class ProductList extends Component {
 
       <div >
       
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div style={{ paddingTop: '20px' }} />
             <Grid  container direction="row" justify="center" xs={12}>
              <Paper elevation={6} style={{width:'90%',borderRadius:"50px"}} >
@@ -220,8 +222,8 @@ class ProductList extends Component {
             </Grid>
             <br />
               <Grid  container direction="row" justify="center" xs={12}>
-
-                  <Fab type="submit" variant = "extended" color="secondary" aria-label="add" size="large" onClick={this.handleName}
+                {this.state.testState}
+                  <Fab type="submit" variant = "extended" color="secondary" aria-label="add" size="large" onClick={this.handleSubmit} 
                   style={{
                     fontFamily: 'Roboto',
                     fontSize: '16px',
@@ -271,7 +273,7 @@ class ProductList extends Component {
                <Grid item xs={10}> 
               <Grid container spacing={5}>
             
-                {data.map(post =>
+                {posts.map(post =>
                   <Grid item xs={12} sm={4}>
                     <TestCard
                       key={post.id}

@@ -1,4 +1,4 @@
-
+import React from 'react'
 import NavBar from './Components/Navbar'
 import SearchProduct from './Components/SearchProduct'
 import Achievements from './Components/Achievements'
@@ -12,14 +12,13 @@ import Route from './Components/Route';
 
 function App() {
 
-  return (
-    <div >
+  return  <div >
 
    <NavBar />
 
 
     </div>
-  );
+  
 }
 
 export default App;
