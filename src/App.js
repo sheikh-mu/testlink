@@ -7,6 +7,7 @@ import ImageSlider from './Components/ImageSlider';
 import VendorReg from './Components/VendorReg';
 import TestVendor from './Testing/TestVendor'
 import Route from './Components/Route';
+import Products from './Testing/Products';
 
 
 
@@ -14,8 +15,8 @@ function App() {
 
   return  <div >
 
-   <NavBar />
-
+   {/* <NavBar /> */}
+<Products />
 
     </div>
   
