@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import {Typography , Button, Grid, Tooltip} from '@material-ui/core';
+import {Typography , Button, Grid, Tooltip, Paper} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { CardHeader} from '@material-ui/core';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
@@ -114,7 +114,7 @@ root: {
 
 export default function TestCard(props) {
   const classes = useStyles();
-  const {  product, Price, desc,vendor,loc,img,chemical,initial,symp_1,symp_2,symp_3 ,detail, disc,cat} = props;
+  const {  product, Price, desc,vendor,loc,img,chemical,initial,symp_1,symp_2,symp_3,add, disc,cat,pres} = props;
   const [open, setOpen] = React.useState(false);
   
     const handleClickOpen = () => {
@@ -133,26 +133,27 @@ export default function TestCard(props) {
 //  }
 
   return (
+    <Paper elevation={16}>
     <Card  className={classes.root} elevation={4} >
 {/*       
       <Button variant="contained" size="small" color="secondary" className={classes.location} ><LocationOnRoundedIcon />  {loc} Distance</Button> */}
       
-      <Chip color="secondary"  icon={<LocationOnRoundedIcon />} label={loc} />
+      <Chip color="secondary"  icon={<LocationOnRoundedIcon />} label={<Typography>{loc} KM</Typography>}/>
       <Button variant="contained" size="small" color="primary" className={classes.discount} style={{float:'right'}}>  {disc}%off</Button>
-    
-
+  
       <CardHeader
         avatar={
-          <Avatar  className={classes.avatar}>
-          { initial}
-          </Avatar>
+        //   <Avatar  className={classes.avatar}>
+        //   {/* { initial} */}
+        //   </Avatar>
+        <Avatar alt="Remy Sharp" src="src/Components/ pexels-nataliya-vaitkevich-5863400.jpg" />
         }
         
            title={   
              <Typography variant="h7"style={{fontSize:"24px", fontFamily:"Roboto"}} >{vendor}</Typography>    }
           subheader={
            <div>
-        <Typography variant="h7" >Address</Typography>
+        <Typography variant="h7" >{add}</Typography>
             </div>
           }
        /> 
@@ -225,11 +226,7 @@ export default function TestCard(props) {
              <Typography variant="h6" style={{fontWeight:"bold"}}>Product Specification:
                     
                    { <Typography>
-                     <ul>
-                      <li>1.56 Rs each tablet</li>
-                      <li>10 strips </li>
-                      <li>200 tablets each box</li>
-                      </ul>
+                   {desc}
                     </Typography>}
                    </Typography>
                     
@@ -240,9 +237,14 @@ export default function TestCard(props) {
               </Typography>
 
               <hr />
+              <Typography variant="h6" style={{fontWeight:"bold"}}> Need of Prescription: 
+              {<Typography variant= "h5" style={{color:"#29BB89",fontFamily:'Calibri'}}>{pres}</Typography>}
+              </Typography>
 
+              <hr />
+              
               <Typography variant="h6"style={{fontWeight:"bold"}} > Vendor Location: 
-              {<Typography variant= "h5" style={{color:"#29BB89",fontFamily:'Calibri'}}>{loc}</Typography>}
+              {<Typography variant= "h5" style={{color:"#29BB89",fontFamily:'Calibri'}}>{loc} KM</Typography>}
               </Typography>
               <hr />
           </TabPanel>
@@ -270,6 +272,7 @@ export default function TestCard(props) {
       </Dialog>
 
     </Card>
+    </Paper>
     
   );
 }
