@@ -3,29 +3,16 @@ import { AppBar, TextField } from '@material-ui/core'
 import {Toolbar} from '@material-ui/core'
 import {Typography} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Navigate from './Navigate'
+import SearchProduct from './SearchProduct'
 import {Grid, Button} from "@material-ui/core"
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import AccountCircleTwoTone from '@material-ui/icons/AccountCircleTwoTone'
-import Backdrop from '@material-ui/core/Backdrop';
-
-import SearchIcon from '@material-ui/icons/Search';
-
+import { MapContainer}   from '../Testing/TestMap'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-
-
-import SearchProduct from './SearchProduct'
-import VendorReg from './VendorReg';
-import { MapContainer } from '../Testing/TestMap';
 
 const useStyles= makeStyles((theme) => ({
 typograhyStyles:{
@@ -50,6 +37,7 @@ toolbarTitle: {
 },
 button: {
   margin: '2px',
+  
 }
 }));
 
@@ -64,30 +52,34 @@ export default function Navbar() {
         <AppBar position='static'>
        
        <Toolbar className={classes.toolbar}>
+       <Button size="small" href="http://localhost:3000/home" > 
        <Avatar src={image} />
-        <Button size="small" href="http://localhost:3000/"> Smart Pharmacy</Button>
+         </Button>
+    
         <Typography
           component="h2"
           variant="h5"
           color="inherit"
           align="center"
-          style={{fontFamily:"Rockwell"}}
+          style={{fontFamily:"Roboto",fontWeight: 'Bold'}}
           noWrap
           className={classes.toolbarTitle}
         >
-    
+    X Pharmacy
         </Typography>
+      
         
-     <Button size="small"  color="secondary" href="/location">
-     Location
+     <Button size="small" variant="contained" color="secondary" href="http://localhost:3000/"    
+     style={{
+                fontFamily: 'Roboto',
+                fontSize:'14px',
+                // fontWeight: 'Bold',
+                borderRadius: '40px'
+                
+              }}>
+     Relocate
      </Button>
      
-     <Button size="small" variant="contained" color="secondary" href="/home" className={classes.button}>
-     Home
-     </Button>
-
-    
-
       </Toolbar>
     </AppBar>
     </Grid>
@@ -96,7 +88,7 @@ export default function Navbar() {
 
 <Switch>
 
-<Route  path="/location">
+<Route exact path="/">
  <MapContainer />
 </Route>
 

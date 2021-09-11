@@ -18,6 +18,7 @@ class ProductList extends Component {
     this.state = {
       posts: [],
       testState: "",
+      name:'',
       data: [
 
         {
@@ -149,24 +150,36 @@ class ProductList extends Component {
   //   // console.log({name});
   // }
 
+  handleName = (event )=> {
+    this.setState({
+       [event.target.name]:event.target.value
+    })
+  }
+
   handleSubmit = (event) => {
     
     event.preventDefault();
+    //  alert('Product Searched for: ' + this.state.name);
 
-    const { name } = this.state;
+    const {name} = this.state;
     const{msg}=this.state;
 
 
-    axios.get('http://192.168.0.107/api/search', { name })
+    axios.post('https://wearteachers.xyz/public/api/search', { name })
 
       .then(response => {
         // console.log(response,"responce");
         // console.log(response.data)
-        console.log(response.data.message,"Apna msg")
+        // console.log(response.data.message,"Apna msg")
         
-         this.setState({ msg: response.data.message});
+          // this.setState({ msg: response.data.message});
+          console.log(response);
+        console.log(response.data);
+        // console.log(this.state.name)
+       
+        // console.log({name})
         this.setState({ posts: response.data })
-        
+   
         // this.setState({ testState: response.data.product_description })
         // console.log("yeh b description hy")
 
@@ -174,14 +187,10 @@ class ProductList extends Component {
       .catch(error => {
         console.log(error)
       })
-    console.log({ name });
+    console.log({ name} );
   };
-
-  handleName = event => {
-    this.setState({
-      name: event.target.value
-    })
-  }
+ 
+ 
 
   // _onButtonClick() {
   //   this.setState({
@@ -190,7 +199,7 @@ class ProductList extends Component {
   // }
 
   render() {
-    const { posts, name, data } = this.state;
+    const { posts} = this.state;
 
     return (
 
@@ -200,33 +209,25 @@ class ProductList extends Component {
           <div style={{ paddingTop: '20px' }} />
           <Grid container direction="row" justify="center" xs={12}>
             <Paper elevation={6} style={{ width: '90%', borderRadius: "50px" }} >
-              {/* <TextField 
-                  className="inputRounded"
-                   
-                    placeholder="Search Medicine/Chemical Compound"
-                    variant="outlined"
-                    color="secondary"
-                    required
-                  value={this.handleName}
-                     onClick={this.handleName} 
-                    /> */}
+             
 
 
               
                   <TextField
-
+                    style={{ width: '100%' }}
                     className="inputRounded"
-                   
                     id="filled-secondary"
                     placeholder="Search for Medicine "
                     variant="outlined"
                     color="secondary"
-                    required
-                    value={name}
-                    onChange={this.handleName}
+                    // required
+                    type= "text"
+                    name = "name" 
+                    value={this.state.value}
+                    onChange= {this.handleName}
                     InputProps={
                       {
-                         type: 'search',
+                         
                         startAdornment: (
                           <InputAdornment position="end">
                             <SearchIcon />
@@ -241,10 +242,10 @@ class ProductList extends Component {
           <br />
           
 
-          {this.state.msg}
+          {/* {this.state.msg} */}
           <Grid container direction="row" justify="center" xs={12}>
           
-            <Fab type="submit" variant="extended" color="secondary" aria-label="add" size="large" onClick={this.handleName}
+            <Fab type="submit" variant="extended" color="secondary" aria-label="add" size="large" onSubmit={this.handleSubmit} 
               style={{
                 fontFamily: 'Roboto',
                 fontSize: '16px',
@@ -257,7 +258,9 @@ class ProductList extends Component {
 
           <br />
 
-          <div style={{ paddingLeft: '10px' }}><Typography variant='h6' style={{ fontWeight: 'bold' }}>Result showing:</Typography></div>
+          <div style={{ paddingLeft: '10px' }}>
+            <Typography variant='h7' style={{ fontWeight: 'bold'}}>Result Showing:{<Typography variant='h6' style={{color:"#29BB89",fontFamily:'Calibri'}}>{this.state.name}</Typography>}</Typography>
+               </div>
 
         </form>
         {/* 
@@ -299,12 +302,14 @@ class ProductList extends Component {
                   <TestCard
                     key={post.id}
                     product={post.product_name}
-                    Price={post.regular_price}
+                    Price={post.sell_price}
                     desc={post.product_description}
-                    vendor={post.vandor}
+                    vendor={post.name}
                     chemical={post.chemical_name}
                     cat={post.category}
-                    loc={post.location}
+                    pres={post.prescrip}
+                    loc={post.distance}
+                    add={post.location}
                      img={post.imgURL}
                     initial={post.initial_name}
                     symp_1={post.sym1}

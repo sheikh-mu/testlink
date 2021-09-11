@@ -138,15 +138,23 @@ export default function TestCard(props) {
 {/*       
       <Button variant="contained" size="small" color="secondary" className={classes.location} ><LocationOnRoundedIcon />  {loc} Distance</Button> */}
       
-      <Chip color="secondary"  icon={<LocationOnRoundedIcon />} label={<Typography>{loc} KM</Typography>}/>
-      <Button variant="contained" size="small" color="primary" className={classes.discount} style={{float:'right'}}>  {disc}%off</Button>
+      {/* <Chip color="secondary"  icon={<LocationOnRoundedIcon />} label={<Typography>{loc} KM</Typography>}/> */}
+
+      <Button variant="contained" size="small" color="secondary"className={classes.discount}  startIcon={  <LocationOnRoundedIcon />}>  {loc} KM</Button>
+    
+     <Button variant="contained" size="small" color="primary" className={classes.discount} style={{float:'right'}}>  {disc}%off</Button>
   
+  
+
+  
+    
       <CardHeader
         avatar={
-        //   <Avatar  className={classes.avatar}>
-        //   {/* { initial} */}
-        //   </Avatar>
-        <Avatar alt="Remy Sharp" src="src/Components/ pexels-nataliya-vaitkevich-5863400.jpg" />
+          <Avatar  className={classes.avatar}>
+          XP
+          {/* { initial} */}
+          </Avatar>
+        
         }
         
            title={   
