@@ -7,18 +7,13 @@ import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 import CloseIcon from '@material-ui/icons/Close';
 import { Typography, Tooltip, Dialog, DialogContent, Chip, Button, IconButton  } from '@material-ui/core';
 import MuiDialogTitle  from '@material-ui/core/DialogTitle';
-import NavigationIcon from '@material-ui/icons/Navigation';
+
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Fab from '@material-ui/core/Fab';
 import '../material.css'
 import '../App.css'
-import SearchProduct from '../Components/SearchProduct'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 const mapStyles = {        
     height: "50vh",
@@ -57,11 +52,12 @@ const mapStyles = {
     }
 
     export const MapContainer = () => {
-    const [ currentPosition, setCurrentPosition ] = useState({
+     
+      const [ currentPosition, setCurrentPosition ] = useState({
       lat: 24.856989618794938,
       lng: 67.00358817634353
     });
-    // const [post, setPost] = useState({});
+    
     const success = () => {
       const currentPosition = {
         lat: 24.856989618794938,
@@ -114,11 +110,8 @@ const mapStyles = {
             console.log('hello')
 
             setAlert(true);
-            <Switch>
-            <Route path="/home" >
-            <SearchProduct />
-            </Route>
-          </Switch>
+            
+            window.location = "/home" 
     }
 
     
@@ -138,11 +131,16 @@ const mapStyles = {
   
       setAlert(false);
     }
+    // const propertyValues = Object.values(currentPosition);
+
+    // console.log(propertyValues);
+    // const name= propertyValues;
+    
     return (
     
       <Dialog fullScreen open={open} onClose={handleClose} aria-labelledby="customized-dialog-title">
-      <DialogTitle  className = 'App-header' onClose={handleClose} >
-  
+      <DialogTitle  className = 'App-header'  >
+ 
       </DialogTitle>
   
       <DialogContent>
