@@ -51,7 +51,7 @@ const mapStyles = {
       return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
 
-    export const MapContainer = () => {
+    export const MapContainer = (props) => {
      
       const [ currentPosition, setCurrentPosition ] = useState({
       lat: 24.856989618794938,
@@ -73,9 +73,11 @@ const mapStyles = {
         lng: position.coords.longitude
       }
       setCurrentPosition(currentPosition);
+    
       console.log(currentPosition);
     };
-
+    props.data.Directions=currentPosition;
+    console.log("props ka data",props.data.Directions)
  useEffect(() => {
    navigator.geolocation.getCurrentPosition(success)
     },[])

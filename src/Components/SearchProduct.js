@@ -14,7 +14,7 @@ class ProductList extends Component {
 
   constructor(props) {
     super(props)
-
+console.log("props k data in search product", props.data.Directions)
     this.state = {
       posts: [],
       testState: "",

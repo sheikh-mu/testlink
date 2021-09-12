@@ -44,7 +44,7 @@ button: {
 export default function Navbar() {
     const classes = useStyles();
     const image='https://images.unsplash.com/photo-1584017911766-d451b3d0e843?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDN8fG1lZGljaW5lfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-
+  const [Directions,setDirections]=React.useState({})
     return (
       <Router>
       <Grid container direction="column"  >  
@@ -89,11 +89,11 @@ export default function Navbar() {
 <Switch>
 
 <Route exact path="/">
- <MapContainer />
+ <MapContainer data={Directions} />
 </Route>
 
 <Route path="/home">
- <SearchProduct />
+ <SearchProduct  />
 </Route>
 
 
